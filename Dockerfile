@@ -23,6 +23,9 @@ RUN apt-get update && \
     libcurl4-openssl-dev \
     inetutils-ping \
     jq \
+    yarn \
+    npm \
+    nodejs \
   && rm -rf /var/lib/apt/lists/* \
   && c_rehash \
   && cd /tmp \
