@@ -23,9 +23,10 @@ RUN apt-get update && \
     libcurl4-openssl-dev \
     inetutils-ping \
     jq \
-    yarn \
-    npm \
     nodejs \
+  && sudo apt remove cmdtest \
+  && sudo apt install npm  -y --no-install-recommends \
+  && sudo npm install -g yarn -y --no-install-recommends \
   && rm -rf /var/lib/apt/lists/* \
   && c_rehash \
   && cd /tmp \
