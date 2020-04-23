@@ -1,0 +1,15 @@
+{
+  "name": "docker-github-actions-runner",
+  "version": "0.0.1",
+  "description": "Docker Github Actions Runner ============================",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lurian/docker-github-actions-runner.git"
+  },
+  "author": "inStore Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lurian/docker-github-actions-runner/issues"
+  },
+  "homepage": "https://github.com/Lurian/docker-github-actions-runner#readme"
+}
