@@ -1,4 +1,4 @@
-name: GitHub Actions Runner in Docker - Latest
+name: Deploy latest image tag to Github packages
 
 on:
   push:
