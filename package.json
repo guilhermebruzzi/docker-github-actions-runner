@@ -1,6 +1,6 @@
 {
   "name": "docker-github-actions-runner",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Docker Github Actions Runner ============================",
   "repository": {
     "type": "git",
