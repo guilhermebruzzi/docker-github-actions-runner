@@ -2,13 +2,13 @@ IMAGE_NAME = guilhermebruzzi/github-runner
 DOCKER_NAME = github-runner
 
 docker-build:
-	docker build -t $(IMAGE_NAME) --memory="1g" .
+	docker build -t $(IMAGE_NAME) .
 
 docker-remove:
 	docker stop $(DOCKER_NAME) || true && docker rm $(DOCKER_NAME) || true
 
 docker-run: docker-build docker-remove
-	docker run --name $(DOCKER_NAME) \
+	docker run --name $(DOCKER_NAME) --memory="1g" \
 	-e REPO_URL="https://github.com/vtex/checkout-instore/" \
 	-e RUNNER_NAME="INSTORE-VTEX-DOCKER-SELF-HOSTED-RUNNER" \
 	-e ACCESS_TOKEN="${GITHUB_ACTIONS_TOKEN}" \
@@ -29,7 +29,10 @@ docker-run-it: docker-build docker-remove
 	-v /tmp/INSTORE-VTEX-DOCKER-SELF-HOSTED-RUNNER:/tmp/INSTORE-VTEX-DOCKER-SELF-HOSTED-RUNNER \
 	$(IMAGE_NAME):latest
 
-setup:
+docker-login:
+	docker login docker.pkg.github.com -u USERNAME --password "${GITHUB_ACTIONS_TOKEN}"
+
+setup: docker-login
 	yarn
 
 deploy: setup
