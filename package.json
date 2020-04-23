@@ -11,5 +11,8 @@
   "bugs": {
     "url": "https://github.com/Lurian/docker-github-actions-runner/issues"
   },
-  "homepage": "https://github.com/Lurian/docker-github-actions-runner#readme"
+  "homepage": "https://github.com/Lurian/docker-github-actions-runner#readme",
+  "devDependencies": {
+    "releasy": "^1.10.2"
+  }
 }

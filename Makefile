@@ -29,5 +29,8 @@ docker-run-it: docker-build docker-remove
 	-v /tmp/INSTORE-VTEX-DOCKER-SELF-HOSTED-RUNNER:/tmp/INSTORE-VTEX-DOCKER-SELF-HOSTED-RUNNER \
 	$(IMAGE_NAME):latest
 
-deploy:
-	releasy --stable
+setup:
+	yarn
+
+deploy: setup
+	./node_modules/.bin/releasy --stable
