@@ -1,0 +1,25 @@
+name: GitHub Actions Runner in Docker - Latest
+
+on:
+  push:
+    paths-ignore:
+      - README.md
+    branches-ignore:
+      - "**"
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+
+      - name: Build Docker image
+        uses: flownative/action-docker-build@v1
+        with:
+          tag_ref: ${{ github.ref }}
+          image_name: lurian/docker-github-actions-runner/docker-github-actions-runner
+          registry_password: ${{ secrets.GITHUB_TOKEN }}
