@@ -1,1 +1,23 @@
-*.bak
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Mac
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+
+# Build
+build/
+deploy/
+.cache-loader/
+
+# Tests
+/coverage
+.env
+
+# Others
+.tmp/
