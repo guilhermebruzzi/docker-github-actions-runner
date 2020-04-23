@@ -1,5 +1,4 @@
-FROM ubuntu:rolling
-LABEL maintainer="3vilpenguin@gmail.com"
+FROM cypress/base:12.16.1
 
 ARG GIT_VERSION="2.23.0"
 ARG GH_RUNNER_VERSION="2.169.1"
@@ -24,6 +23,7 @@ RUN apt-get update && \
     inetutils-ping \
     jq \
     nodejs \
+    xvfb \
   && sudo apt remove cmdtest \
   && sudo apt install npm  -y --no-install-recommends \
   && sudo npm install -g yarn -y --no-install-recommends \
@@ -38,12 +38,6 @@ RUN apt-get update && \
   && make install \
   && cd / \
   && rm -rf /tmp/git.tgz /tmp/git-${GIT_VERSION}
-
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
-  && [[ $(lsb_release -cs) == "eoan" ]] && ( add-apt-repository "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu disco stable" ) || ( add-apt-repository "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" )\
-  && apt-get update \
-  && apt-get install -y docker-ce docker-ce-cli containerd.io --no-install-recommends \
-  && rm -rf /var/lib/apt/lists/*
 
 RUN curl -sL "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
   && chmod +x /usr/local/bin/docker-compose
