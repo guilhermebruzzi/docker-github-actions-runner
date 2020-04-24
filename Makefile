@@ -1,7 +1,14 @@
 IMAGE_NAME = guilhermebruzzi/github-runner
 DOCKER_NAME = github-runner
 
-docker-build:
+
+docker-login:
+	@docker login docker.pkg.github.com -u USERNAME --password "${GITHUB_ACTIONS_TOKEN}"
+
+setup: docker-login
+	yarn
+
+docker-build: setup
 	docker build -t $(IMAGE_NAME) .
 
 docker-remove:
@@ -28,12 +35,6 @@ docker-run-it: docker-build docker-remove
 	-v /var/run/docker.sock:/var/run/docker.sock \
 	-v /tmp/INSTORE-VTEX-DOCKER-SELF-HOSTED-RUNNER:/tmp/INSTORE-VTEX-DOCKER-SELF-HOSTED-RUNNER \
 	$(IMAGE_NAME):latest
-
-docker-login:
-	docker login docker.pkg.github.com -u USERNAME --password "${GITHUB_ACTIONS_TOKEN}"
-
-setup: docker-login
-	yarn
 
 deploy: setup
 	./node_modules/.bin/releasy --stable

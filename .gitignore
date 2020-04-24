@@ -14,6 +14,7 @@ yarn-error.log
 build/
 deploy/
 .cache-loader/
+.dockercfg
 
 # Tests
 /coverage
@@ -21,3 +22,8 @@ deploy/
 
 # Others
 .tmp/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
