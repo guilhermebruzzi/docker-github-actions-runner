@@ -6,6 +6,8 @@ export PATH=$PATH:/actions-runner
 _RUNNER_NAME=${RUNNER_NAME:-default}
 _RUNNER_WORKDIR=${RUNNER_WORKDIR:-/_work}
 _RUNNER_LABELS=${RUNNER_LABELS:-/my_runner}
+_uuid=$(uuidgen)
+_RUNNER_ID=${RUNNER_ID:-"-${_uuid}"}
 
 if [[ -n "${ACCESS_TOKEN}" ]]; then
     URI=https://api.github.com
@@ -26,5 +28,5 @@ if [[ -n "${ACCESS_TOKEN}" ]]; then
     | jq -r '.token')"
 fi
 
-./config.sh --url "${REPO_URL}" --token "${RUNNER_TOKEN}" --replace --name "${_RUNNER_NAME}" --work "${_RUNNER_WORKDIR}" --labels "${_RUNNER_LABELS}"
+./config.sh --url "${REPO_URL}" --token "${RUNNER_TOKEN}" --replace --name "${_RUNNER_NAME}-${_RUNNER_ID}" --work "${_RUNNER_WORKDIR}" --labels "${_RUNNER_LABELS}"
 ./run.sh

@@ -24,6 +24,7 @@ RUN apt-get update && \
     jq \
     nodejs \
     xvfb \
+    uuid-runtime \
   && sudo apt remove cmdtest \
   && sudo apt install npm  -y --no-install-recommends \
   && sudo npm install -g yarn -y --no-install-recommends \
